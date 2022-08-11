@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "declaration": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "lib": [
+            "ES2017",
+            "dom"
+        ],
+        "target": "ES2017",
+        "module": "commonjs",
+        "outDir": "./dist",
+        "resolveJsonModule": true
+    },
+    "include": [
+        "src/**/*.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}

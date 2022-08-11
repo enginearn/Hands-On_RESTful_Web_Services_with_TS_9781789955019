@@ -1,11 +1,55 @@
 {
   "name": "order_api",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "This is the example from the Book Hands on RESTful Web Services with TypeScript and Node.js",
+  "main": "./dist/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npm run clean && tsc",
+    "clean": "rimraf dist && rimraf reports",
+    "lint": "eslint src/**/*.ts ./test/**/*.spec.ts",
+    "lint:fix": "eslint --fix src/**/*.ts ./test/**/*.spec.ts -t verbose",
+    "pretest": "cross-env NODE_ENV=test npm run lint",
+    "test": "cross-env NODE_ENV=test mocha --reporter spec --compilers ts:ts-node/register ./test/**/*.spec.ts",
+    "test:mutation": "stryker run",
+    "stryker:init": "stryker init",
+    "dev": "cross-env PORT=3000 NODE_ENV=development ts-node ./dist/server.ts",
+    "prod": "PORT=3000 npm run build && npm run start",
+    "tsc": "tsc"
   },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "keywords": [
+    "order POC",
+    "order API"
+  ],
   "author": "",
-  "license": "ISC"
+  "license": "MIT",
+  "devDependencies": {
+    "@types/body-parser": "^1.19.0",
+    "@types/chai": "^4.2.0",
+    "@types/chai-http": "^4.1.0",
+    "@types/express": "^4.17.0",
+    "@types/mocha": "^5.2.5",
+    "@types/node": "^8.0.0",
+    "chai": "^4.2.0",
+    "cross-env": "^5.2.0",
+    "mocha": "^5.2.0",
+    "rimraf": "^2.6.2",
+    "stryker": "*",
+    "stryker-api": "*",
+    "stryker-html-reporter": "*",
+    "stryker-mocha-framework": "*",
+    "stryker-mocha-runner": "*",
+    "stryker-typescript": "*",
+    "ts-node": "^10.9.1",
+    "eslint": "^8.21.0",
+    "eslint-config-prettier": "^8.5.0",
+    "typescript": "^3.0.3"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "chai-http": "^4.1.0"
+  }
 }
